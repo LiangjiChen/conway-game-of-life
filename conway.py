@@ -1,12 +1,14 @@
-#!/usr/local/bin/python2.7
+#!/usr/bin/env python3
 import os
-import sys
 import random
 import time
 
 class game(object):
     def __init__(self):
-        self.map_1 = [[0,0,0,1,0,0,0,0,0], [0,0,1,1,0,0,0,0,0]]
+        self.map_1 = [
+            [0,0,0,1,0,0,0,0,0],
+            [0,0,1,1,0,0,0,0,0],
+        ]
 
     def next(self, own, neighbor):
         return self.map_1[own][neighbor]
@@ -33,16 +35,16 @@ def main():
                 neighbor = map[i-1][j-1] + map[i-1][j] + map[i-1][j+1] + map[i][j-1] + map[i][j+1] + map[i+1][j-1] + map[i+1][j] + map[i+1][j+1]
                 map_new[i][j] = a.next(own, neighbor)
         map = map_new
+        os.system('clear')
+        print("Row : " + str(row) + " Col : " + str(col))
         for i in range(row):
             print_str = ""
             for j in range(col):
                 if map[i][j] : cell = "*"
                 else : cell = " "
                 print_str += cell
-            print print_str
+            print(print_str)
         time.sleep(0.2)
-        os.system('clear')
-        print "Row : " + str(row) + " Col : " + str(col)
 
 if __name__ == "__main__":
     main()
